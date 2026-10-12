@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c1017" />
+    <title>AURA is offline</title>
+    <style>
+      :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #0c1017; color: #f0f3f8; }
+      body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; box-sizing: border-box; }
+      main { max-width: 520px; padding: 32px; border: 1px solid #ffffff18; border-radius: 16px; background: #151b24; }
+      h1 { margin: 0 0 12px; }
+      p { color: #aab3c1; line-height: 1.65; }
+      button { min-height: 44px; border: 0; border-radius: 9px; padding: 10px 18px; background: #91eddd; color: #101719; font: 600 14px system-ui; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>AURA needs one online opening.</h1>
+      <p>
+        This device does not have the application shell cached yet. Reconnect,
+        open AURA once, and wait for offline readiness before relying on it
+        without a connection. Your browser data has not been cleared by this
+        screen.
+      </p>
+      <button type="button" onclick="location.reload()">Retry</button>
+    </main>
+  </body>
+</html>
