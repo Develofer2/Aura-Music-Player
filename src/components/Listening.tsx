@@ -178,7 +178,7 @@ export function Transport({ large = false }: { large?: boolean }) {
   )
 }
 export function Timeline() {
-  const p = usePlayer()
+  const p = usePlayer(true)
   return (
     <div
       className="timeline"
@@ -215,7 +215,7 @@ export default function MiniPlayer({
   onQueue: () => void
   onSound: () => void
 }) {
-  const p = usePlayer(),
+  const p = usePlayer(true),
     aura = useAura(),
     track = aura.tracks.find((t) => t.id === p.queue[p.index]?.trackId)
   return (

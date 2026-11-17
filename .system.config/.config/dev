@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Rebuild the optimized graph on restart so connected previews cannot mix
+# an older React renderer with newly installed component dependencies.
+exec pnpm run dev --force

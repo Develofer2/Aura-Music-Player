@@ -131,9 +131,23 @@ class Playback {
     }
   }
   snapshot = () => this.state
+  // Coarse listeners ignore position-only ticks so lists/pages don't re-render 4x/second.
+  coarseListeners = new Set<() => void>()
+  coarse: PlayerState = this.state
+  subscribeCoarse = (callback: () => void) => {
+    this.coarseListeners.add(callback)
+    return () => {
+      this.coarseListeners.delete(callback)
+    }
+  }
+  coarseSnapshot = () => this.coarse
   patch(patch: Partial<PlayerState>) {
     this.state = { ...this.state, ...patch }
     this.listeners.forEach((fn) => fn())
+    const keys = Object.keys(patch)
+    if (keys.length === 1 && keys[0] === "position") return
+    this.coarse = this.state
+    this.coarseListeners.forEach((fn) => fn())
   }
   restore(session: Session) {
     this.patch({ ...session, playing: false })

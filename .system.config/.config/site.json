@@ -1,0 +1,17 @@
+{
+  "title": "AURA",
+  "description": "AURA is a free, local-first music player. Import your songs once, build playlists, switch between beautiful themes, watch a live waveform and see your listening stats. No account, no tracking, and your music never leaves your device.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  },
+  "icons": {
+    "icon": "/favicon.svg"
+  },
+  "openGraph": {
+    "image": "/thumbnail.png"
+  }
+}

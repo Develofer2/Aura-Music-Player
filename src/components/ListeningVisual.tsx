@@ -168,7 +168,7 @@ interface VisualProps {
 }
 export default function ListeningVisual({ mode, large = false }: VisualProps) {
   const aura = useAura(),
-    p = usePlayer()
+    p = usePlayer(true)
   const track = aura.tracks.find((t) => t.id === p.queue[p.index]?.trackId)
   const selected = mode || aura.prefs.mode
   const progress = p.duration ? p.position / p.duration : 0

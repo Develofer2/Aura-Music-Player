@@ -1625,3 +1625,24 @@ html.lite .app { --scene-blur: 0px; }
 .import-guide > .button { font-size: 11px; padding-left: 0; }
 .import-guide[data-open] svg { transform: rotate(180deg); }
 .import-guide ol { margin: var(--s2) 0 0 var(--s5); display: grid; gap: var(--s2); font-size: 12px; color: var(--muted); list-style: decimal; }
+
+/* Performance pass: flat surfaces, no live blur, no idle animation. */
+*, *::before, *::after { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+.app { --scene-blur: 0px; }
+.modal-overlay { background: color-mix(in srgb, var(--bg) 82%, #000) !important; }
+.mini-player, .topbar, .sidebar, .mobile-nav { background: var(--panel-solid); }
+.mini-player { box-shadow: 0 4px 16px #0003; }
+.sound-room, .mood-panel, .session-panel, .library-panel, .playlist-panel,
+.chart-card, .collection-card, .group-card, .snapshot, .theme-card { box-shadow: none; }
+.page { animation: none; }
+.glass-orb { animation: none; box-shadow: none; }
+.aurora-stage > span:not(.visual-caption) { filter: none; background: radial-gradient(circle, var(--blob), transparent 68%); animation-duration: 40s; }
+.type-stage strong { animation: none; }
+.player-signal.playing > span { animation: none; }
+.track-row { content-visibility: auto; contain-intrinsic-size: auto 56px; }
+
+/* Mobile: Home import button stays a compact icon circle (no wrapped text). */
+@media (max-width: 650px) {
+  .home-page .room-import { width: 42px; height: 42px; min-height: 42px; padding: 0; font-size: 0; gap: 0; border-radius: 50%; flex: none; justify-content: center; }
+  .home-page .room-import svg { width: 18px; }
+}

@@ -4,11 +4,11 @@ import tailwindcss from "@tailwindcss/vite"
 import { VitePWA } from "vite-plugin-pwa"
 import path from "node:path"
 
-import siteConfiguration from "./.figma/make/site.json"
+import siteConfiguration from "./.system.config/.config/site.json"
 
 // AURA build configuration. Copyright (c) 2026 Develofer2. MIT License.
 export default defineConfig(({ mode }) => {
-  // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
+  // .system.config/.config/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === "development"
 
   return {
@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
         registerType: "prompt",
         injectRegister: false,
         manifestFilename: "manifest.json",
-        includeAssets: ["favicon.svg", "offline.html"],
+        includeAssets: ["favicon.svg", "thumbnail.png", "offline.html"],
         manifest: {
           name: "AURA — Local Music Player",
           short_name: "AURA",
@@ -76,7 +76,7 @@ export default defineConfig(({ mode }) => {
       port: parseInt(process.env.PORT || "8443"),
       strictPort: true,
       watch: {
-        ignored: ["**/.figma/**"],
+        ignored: ["**/.system.config/**"],
       },
     },
     preview: {
@@ -113,7 +113,7 @@ type FigmaSiteConfiguration = {
   }
 }
 
-/** Applies /.figma/make/site.json to the generated document shell. */
+/** Applies /.system.config/.config/site.json to the generated document shell. */
 function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
   function sanitizeHtmlValue(value: string | undefined): string {
     return value?.replace(/[^a-zA-Z0-9_-]/g, "") || ""

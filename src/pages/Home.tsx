@@ -29,7 +29,7 @@ export default function Home({
   onExpand: () => void
 }) {
   const aura = useAura(),
-    p = usePlayer()
+    p = usePlayer(true)
   const recent = [...aura.tracks].sort((a, b) => b.added - a.added).slice(0, 4)
   const track = aura.tracks.find((t) => t.id === p.queue[p.index]?.trackId)
   const totalSeconds = aura.events.reduce((sum, e) => sum + e.seconds, 0)

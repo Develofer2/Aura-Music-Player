@@ -4,13 +4,14 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 
-// AURA component-library build. Copyright (c) 2026 Develofer2. MIT License.
-// Library-mode config invoked via `pnpm run build:lib`; the app itself builds
-// with vite.config.ts. Type declarations are emitted separately by
-// `tsc -p tsconfig.types.json`.
+// Library-mode build config used when publishing this Make as a Make Kit
+// (npm package). The dev server uses vite.config.ts; this config is only
+// invoked via `pnpm run build:lib`. Type declarations are emitted separately
+// by `tsc -p tsconfig.types.json` (see the build:lib script in package.json).
 
-// Runtime and peer dependencies stay external so the package does not bundle
-// them; consumers provide their own React.
+// Externalize runtime + peer dependencies so the published package doesn't
+// bundle them — consumers provide their own React etc. Mirrors Foundry's
+// createPackageConfig external predicate.
 function readExternalDeps(): string[] {
   try {
     const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf-8')) as {

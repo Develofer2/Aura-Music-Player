@@ -362,6 +362,9 @@ export function useAura() {
   if (!state) throw new Error("AURA provider is required")
   return state
 }
-export function usePlayer() {
-  return useSyncExternalStore(player.subscribe, player.snapshot)
+export function usePlayer(withTime = false) {
+  return useSyncExternalStore(
+    withTime ? player.subscribe : player.subscribeCoarse,
+    withTime ? player.snapshot : player.coarseSnapshot,
+  )
 }

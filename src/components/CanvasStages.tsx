@@ -48,18 +48,21 @@ function useFrame(draw: (time: number, dt: number) => void) {
     let raf = 0,
       last = performance.now(),
       stopped = false,
+      raw = last,
       slow = 0,
       frames = 0
     const loop = (now: number) => {
       if (stopped) return
       const root = document.documentElement
       const reduced = root.classList.contains("reduced-motion")
-      if (!reduced || now - last > 250) {
-        if (!root.classList.contains("lite") && now - last > 34) slow++
-        if (++frames === 90) {
-          if (slow > 45) root.classList.add("lite")
-          frames = slow = 0
-        }
+      if (!root.classList.contains("lite") && now - raw > 34) slow++
+      raw = now
+      if (++frames === 90) {
+        if (slow > 45) root.classList.add("lite")
+        frames = slow = 0
+      }
+      // Cap drawing at ~30fps: smooth enough, half the CPU/GPU work.
+      if (now - last >= (reduced ? 250 : 30)) {
         latest.current(now, Math.min(64, now - last))
         last = now
       }
