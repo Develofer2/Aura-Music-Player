@@ -54,6 +54,8 @@ copies of the source.
   audio dock, reduced-motion preferences and an optional decorative companion.
 - Real listening accumulation, once-per-session qualification, rankings and
   local-day activity; no fake music, plays, or charts.
+- Installable PWA with a generated `manifest.json`, offline shell caching and
+  app icons for supported browsers.
 - Versioned metadata backup validation/merge, storage estimates/protection,
   explicit clear-data confirmation, responsive navigation and accessible dialogs.
 - Public kit primitives, interactive `KitPreview`, and guidelines.
@@ -70,8 +72,18 @@ permissions; restoring new tracks requires relinking.
 
 File references and folder pickers require supporting browsers. Codec support
 varies; accepting an extension does not guarantee successful decoding. Mobile
-background playback depends on the browser/OS. Loading the app itself may require
-network access; service-worker offline-shell caching is deliberately deferred.
+background playback depends on the browser/OS. Loading the app itself may
+require network access until the service worker has completed its first
+installation.
+
+### Installing on a phone
+
+The production build emits `manifest.json` and a service worker, so supported
+browsers can install AURA from the browser menu or install prompt. The deployed
+site must be served over HTTPS (localhost is the only HTTP exception); Vite's
+local development server is HTTP by default and is not an installable
+production origin. Use an HTTPS deployment provider or configure a trusted local
+certificate when testing on a device.
 
 Large-file duplicate fingerprints sample the first/last megabyte plus size to
 bound memory; small files use full SHA-256. These identify likely duplicates,

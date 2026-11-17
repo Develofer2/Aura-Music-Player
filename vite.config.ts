@@ -28,17 +28,22 @@ export default defineConfig(({ mode }) => {
         filename: "sw.js",
         registerType: "prompt",
         injectRegister: false,
+        manifestFilename: "manifest.json",
         includeAssets: ["favicon.svg", "thumbnail.png", "offline.html"],
         manifest: {
           name: "AURA — Local Music Player",
           short_name: "AURA",
+          id: ".",
           description:
             "A private, local-first music player for your own collection.",
           display: "standalone",
+          display_override: ["window-controls-overlay", "standalone"],
+          orientation: "portrait-primary",
           start_url: ".",
           scope: ".",
           theme_color: "#0c1017",
           background_color: "#0c1017",
+          categories: ["music", "entertainment"],
           icons: [
             { src: "pwa-192.png", sizes: "192x192", type: "image/png" },
             { src: "pwa-512.png", sizes: "512x512", type: "image/png" },
