@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
         registerType: "prompt",
         injectRegister: false,
         manifestFilename: "manifest.json",
-        includeAssets: ["favicon.svg", "thumbnail.png", "offline.html"],
+        includeAssets: ["favicon.svg", "offline.html"],
         manifest: {
           name: "AURA — Local Music Player",
           short_name: "AURA",
